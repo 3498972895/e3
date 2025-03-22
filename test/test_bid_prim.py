@@ -21,4 +21,4 @@ buyers = [
 seller = Seller(static_fmax)
 bid_prim = BidPrim(buyers, seller)
 bid_prim.run()
-bid_prim.print_info()
+bid_prim.output()

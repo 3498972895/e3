@@ -16,9 +16,6 @@ class Algorithm:
     def run(self):
         pass
 
-    def output(self):
-        pass
-
 
 """
 Proposing two ways to iterate  the BIDPRIM ALGORITHMS:
@@ -70,7 +67,7 @@ class BidPrim(Algorithm):
             self.p_records.append(p_new)
             self.el_records.append(el)
             self.w_records.append([e * p_new for e in el])
-            self.buyer_utility.append(
+            self.utility_records.append(
                 [
                     self.compute_buyer_utility(
                         self.buyers[j].r,
@@ -95,10 +92,45 @@ class BidPrim(Algorithm):
             # else continue iteration
             p = p_new
 
-    """
-    define a output fuction, printing information which gets from run() fuction
-    """
+    def output(self):
+        print(self.p_records[-1])
+        print(sum(self.w_records[-1]) / self.seller.fmax)
+
+
+class UniPrim(Algorithm):
+    def __init__(self, buyers, seller):
+        super().__init__(buyers, seller)
+
+    def run(self):
+
+        # 1. calculate the p according to theorm2
+        p = (
+            (
+                sum(
+                    [
+                        (r * c / mu) ** 0.5 / fmax * fmax
+                        for buyer in self.buyers
+                        for r, c, mu, fmax in [
+                            (buyer.r, buyer.c, buyer.mu, self.seller.fmax)
+                        ]
+                    ]
+                )
+            )
+            ** 2
+        ) / (self.seller.fmax * self.seller.fmax)
+
+        # 2. calculate the wi* for each buyer
+        self.w_records = [
+            (r * c * p / mu) ** 0.5
+            for buyer in self.buyers
+            for r, c, mu in [(buyer.r, buyer.c, buyer.mu)]
+        ]
+
+        # 3. write records to buyer and seller
+        for i, buyer in enumerate(self.buyers):
+            buyer.w = self.w_records[i]
+        self.seller.unit_price = p
 
     def output(self):
-        for i in range(len(self.buyers)):
-            print(f" buyer{i + 1}: buyer.w {self.buyers[i].w} ")
+        print(sum(self.w_records) / self.seller.fmax)
+        print(self.seller.unit_price)
