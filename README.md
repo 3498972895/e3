@@ -1,11 +1,15 @@
 REFACTOR CODE FROM PAPAER&REPO "THREE DYNAMIC PRICING SCHEMES FOR RESOURCE ALLOCATION OF EDGE COMPUTING FOR IOT ENVIRONMENT"
 
-Data FOR TESTING IS SAME WITH PAPER
+Data for testing is same with paper
 
 static_num_users = 5
+
 static_rs = [1, 2, 8, 10, 15] * 8
+
 static_mus = [1, 1.5, 2, 3, 5]
+
 static_cs = [20000, 20000, 31680, 31680, 2640]  # needed cycles per one bit
+
 static_fmax = 8 * 10**3  # GHz
 
 RESULT 
