@@ -8,9 +8,6 @@ class Buyer:
         self.r = r
         self.mu = mu
         self.c = c
-        self.f = 0.0  # Allocated CPU resource (Hz), dynamically allocated by Seller
-        self.w = 0.0  # Money for bidding
-        self.utility = 0.0  # Utility value
 
 
 class Seller:

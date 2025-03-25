@@ -4,6 +4,8 @@ from ..algorithms import BidPrim
 
 
 """
+data same with paper's NUMERICAL RESULTS section beginning.
+
 examing using static data same with article.
 I found my result bidprim algorithm is not same with article
 Because the source code the author provided uses a MINIMIZE FUCTION FROM a SCIPY library
@@ -21,4 +23,4 @@ buyers = [
 seller = Seller(static_fmax)
 bid_prim = BidPrim(buyers, seller)
 bid_prim.run()
-bid_prim.output()
+bid_prim.output("BID-PRIM")
